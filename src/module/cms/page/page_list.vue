@@ -58,6 +58,11 @@
             size="small" type="text"
             @click="preview(page.row.pageId)">页面预览
           </el-button>
+
+          <el-button
+            size="small" type="text"
+            @click="postPage(page.row.pageId)">页面发布
+          </el-button>
         </template>
 
       </el-table-column>
@@ -129,7 +134,7 @@
               this.$message.error("删除失败")
             }
           })
-        })
+        });
 
       },
       //页面预览
@@ -137,6 +142,20 @@
         //打开浏览器窗口
         window.open("http://www.xuecheng.com/cms/preview/"+pageId)
       },
+      //页面发布
+      postPage(pageId){
+        this.$confirm('确认要发布页面吗?','提示',{}).then(()=>{
+          cmsApi.page_postPage(pageId).then(res=>{
+            if(res.success){
+              console.log('发布页面id='+id);
+              this.$message.success('发布成功，请稍后查看结果');
+            }else{
+              this.$message.error('发布失败');
+            }
+          });
+        }).catch(()=>{});
+
+      }
     },
     created() {
       //取出路由中的参数，赋值给数据对象

@@ -3,6 +3,7 @@ import page_list from '@/module/cms/page/page_list.vue';
 import page_add from '@/module/cms/page/page_add.vue';
 import page_edit from '@/module/cms/page/page_edit.vue';
 
+//页面跳转的方法,与.vue页面连接
 export default [{
   path: '/',
   component: Home,
